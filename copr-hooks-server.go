@@ -40,8 +40,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	switch refs[2] {
 	case "master":
 		url := os.Getenv("MASTER")
+
 		res, err := http.Post(url, "application/json", nil)
 		if err != nil {
+			log.Println(err)
 			log.Fatal("Adress Not Reachable")
 		}
 		if res.Status == "200" {
